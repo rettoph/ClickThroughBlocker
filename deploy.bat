@@ -17,11 +17,16 @@ set VERSIONFILE=ClickThroughBlocker.version
 
 set DP0=r:\dp0\kspdev
 
+mkdir "%GAMEDATA%\%GAMEDIR%\Plugins"
 copy /Y "%1%2" "%GAMEDATA%\%GAMEDIR%\Plugins"
-copy /Y "%1%3".pdb "%GAMEDATA%\%GAMEDIR%\Plugins
+copy /Y "%1%3".pdb "%GAMEDATA%\%GAMEDIR%\Plugins"
 
 copy /Y %VERSIONFILE% %GAMEDATA%\%GAMEDIR%
 copy /y changelog.cfg  %GAMEDATA%\%GAMEDIR% 
 
 xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%H%\GameData\%GAMEDIR%"
-xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%DP0%\GameData\%GAMEDIR%"
+
+if exist %DP0% (
+  xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%DP0%\GameData\%GAMEDIR%"
+)
+
